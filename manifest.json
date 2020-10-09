@@ -1,0 +1,23 @@
+{
+  "name": "__MSG_ext_name__",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "__MSG_ext_desc__",
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
+  "content_scripts": [{
+    "matches": ["https://*/solr/*", "http://*/solr/*"],
+    "css" : [
+      "css/style.css"
+    ],
+    "js": [
+      "thirdparty/jquery-3.5.1.min.js",  
+      "js/features/query_history.js",
+      "js/content.js"
+      ]
+  }]
+}
