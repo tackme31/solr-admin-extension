@@ -6,6 +6,9 @@ Features:
 - [x] Query History
 - [ ] Aliases Viewer
 
+## Installation
+This extension is not yet available in the Chrome Web Store. Clone this repository and load it as an unpackaged extension.
+
 ## License
 *Solr Admin Extension* is licensed under the MIT license. See LICENSE.txt.
 
