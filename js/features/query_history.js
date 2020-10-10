@@ -20,7 +20,7 @@ const paramNames = [
 function getFormParameters() {
     const params = {}
     params['_query'] = decodeURIComponent($('#url').text().replace(/^.+\?/, ''))
-    params['_hostname'] = location.hostname
+    params['_host'] = location.host
     params['_index'] = location.href.match(/#\/(?<index>.+?)\//).groups.index
     params['_datetime'] = `${new Date().toLocaleString()}`
     paramNames.forEach(name => {
@@ -81,7 +81,7 @@ function updateHistoryList(history) {
     }
 
     history
-        .filter(params => params['_hostname'] === location.hostname)
+        .filter(params => params['_host'] === location.host)
         .forEach(params => {
             const historyItem = $(`<option>[${params['_datetime']}] ${params['_query']}</option>`)
             historyItem.attr('data-params', JSON.stringify(params))
@@ -105,18 +105,19 @@ function updateHistoryList(history) {
 function enableQueryHistory() {
     const getHistory = () => JSON.parse(localStorage.getItem('solr_executed_queries') || '[]')
     const setHistory = history => localStorage.setItem('solr_executed_queries', JSON.stringify(history))
+    const isSameParams = (a, b) => a['_query'] === b['_query'] && a['_host'] == b['_host']
 
     const url = document.getElementById('url')
     const observer = new MutationObserver(() => {
         const history = getHistory()
         const params = getFormParameters()
         // default query or same query excuted
-        if (params['_query'] === "q=*:*" || (history.length > 0 && history[history.length - 1]['_query'] === params['_query'])) {
+        if (params['_query'] === "q=*:*" || isSameParams(history[history.length - 1], params)) {
             return
         }
 
         history.push(params)
-        if (history.length > 20) {
+        if (history.length > 100) {
             history.shift()
         }
 
