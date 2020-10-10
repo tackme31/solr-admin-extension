@@ -80,9 +80,7 @@ function updateHistoryList(history) {
 
     const historyList = $('#history select')
     historyList.empty()
-    history
-        .filter(params => params['_host'] === location.host)
-        .forEach(params => {
+    history.forEach(params => {
             const historyItem = $(`<option>[${params['_datetime']}] ${params['_query']}</option>`)
             historyItem.attr('data-params', JSON.stringify(params))
             historyList.prepend(historyItem)
