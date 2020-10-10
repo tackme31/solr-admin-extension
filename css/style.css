@@ -1,0 +1,18 @@
+.select2-results__option {
+    text-align: left;
+}
+
+.select2-results__option--highlighted {
+    background-color: #e6f6ff !important;
+    color: #333 !important;
+}
+
+.url-query-param-name {
+    color: #f5795b;
+    font-weight: bold;
+}
+
+.url-query-param-value {
+    color: #1ea2e8;
+    font-weight: normal;
+}

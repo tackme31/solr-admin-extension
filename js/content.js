@@ -4,6 +4,8 @@
         switch (content) {
             case 'query':
                 enableQueryHistory()
+            default:
+                enableUIImprovement()
         }
     }
 
@@ -21,7 +23,7 @@
 
     const main = document.getElementById('main')
     if (!main) {
-        return;
+        return
     }
 
     const options = { childList: true, subtree: true }

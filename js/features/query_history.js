@@ -64,7 +64,7 @@ function setFormParameters(params) {
 
         const input = $('#' + name)
         // checkbox toggled
-        if (input.prop('type') === 'checkbox' && input.prop('checked') ^ params[name]) {
+        if (input.prop('type') === 'checkbox' && input.is(':checked') ^ params[name]) {
             input.click()
             return
         }
@@ -74,25 +74,24 @@ function setFormParameters(params) {
 }
 
 function updateHistoryList(history) {
-    if ($('#history select').length) {
-        $('#history select').empty()
-    } else {
-        $('<div id="history"><select></select></div>').insertBefore('#form')
+    if (!$('#history select').length) {
+        $('<div id="history"><select></select></div>').insertBefore('#form')    
     }
 
+    const historyList = $('#history select')
+    historyList.empty()
     history
         .filter(params => params['_host'] === location.host)
         .forEach(params => {
             const historyItem = $(`<option>[${params['_datetime']}] ${params['_query']}</option>`)
             historyItem.attr('data-params', JSON.stringify(params))
-            $('#history select').prepend(historyItem)
+            historyList.prepend(historyItem)
         })
 
-    const defaultItem = $('<option> -- select a history --</option>')
+    const defaultItem = $('<option> -- Select a history query -- </option>')
     defaultItem.prop('selected', true)
-    $('#history select').prepend(defaultItem)
-
-    $('#history select').on('change', (e) => {
+    historyList.prepend(defaultItem)
+    historyList.on('change', (e) => {
         const params = $('option:selected', e.target).data('params')
         if (!params) {
             return
@@ -105,14 +104,12 @@ function updateHistoryList(history) {
 function enableQueryHistory() {
     const getHistory = () => JSON.parse(localStorage.getItem('solr_executed_queries') || '[]')
     const setHistory = history => localStorage.setItem('solr_executed_queries', JSON.stringify(history))
-    const isSameParams = (a, b) => a['_query'] === b['_query'] && a['_host'] == b['_host']
+    const isSameQuery = (a, b) => a && b &&a['_query'] === b['_query'] && a['_host'] == b['_host']
 
-    const url = document.getElementById('url')
     const observer = new MutationObserver(() => {
         const history = getHistory()
         const params = getFormParameters()
-        // default query or same query excuted
-        if (params['_query'] === "q=*:*" || isSameParams(history[history.length - 1], params)) {
+        if (params['_query'] === "q=*:*" || isSameQuery(history[history.length - 1], params)) {
             return
         }
 
@@ -125,11 +122,10 @@ function enableQueryHistory() {
         updateHistoryList(history)
     })
 
+    const url = document.getElementById('url')
     const options = {
-        attributes: false,
-        childList: true,
-        subtree: true,
-        characterData: true
+        characterData: true,
+        subtree: true
     }
     observer.observe(url, options)
 

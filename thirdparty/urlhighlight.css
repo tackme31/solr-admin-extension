@@ -1,0 +1,59 @@
+.url-protocol {
+   color: #7B9185;
+}
+.url-protocol-delimiter {
+   color: lightgray;
+}
+.url-host {
+   color: #E1A658;
+}
+.url-port-delimiter {
+   color: gray;
+}
+.url-port {
+   color: #71291D;
+}
+.url-path {
+   color: #426384;
+   font-weight: bold;
+}
+.url-query-delimiter {
+   color: lightgray;
+}
+.url-query-param-name {
+   color: #4F5928;
+}
+.url-query-param-assign {
+   color: lightgray;
+}
+.url-query-param-value {
+   color: #008083;
+   font-weight: bold;
+}
+.url-query-param-delimiter {
+   color: lightgray;
+}
+.url-hash-delimiter {
+   color: lightgray;
+}
+.url-hash {
+   color: #59618F;
+}
+
+/* data-uri specific */
+.url-mime-type {
+   color: #426384;
+   font-weight: bold;
+}
+.url-mime-type-delimiter {
+   color: lightgray;
+}
+.url-encoding {
+   color: #71291D;
+}
+.url-encoding-delimiter {
+   color: lightgray;
+}
+.url-data {
+   color: #008083;
+}
