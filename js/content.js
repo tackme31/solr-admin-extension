@@ -20,6 +20,10 @@
     })
 
     const main = document.getElementById('main')
+    if (!main) {
+        return;
+    }
+    
     const options = { childList: true, subtree: true }
     observer.observe(main, options)
 
