@@ -13,13 +13,11 @@
     "matches": ["https://*/solr/*", "http://*/solr/*"],
     "css" : [
       "thirdparty/select2.min.css",
-      "thirdparty/urlhighlight.css",
       "css/style.css"
     ],
     "js": [
       "thirdparty/jquery-3.5.1.min.js",
       "thirdparty/select2.min.js",
-      "thirdparty/urlhighlight.js",
       "js/features/query_history.js",
       "js/features/ui-improvement.js",
       "js/content.js"
