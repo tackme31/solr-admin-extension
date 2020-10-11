@@ -1,5 +1,3 @@
-
-
 function getFormParameters() {
     const params = {}
     params['_query'] = decodeURIComponent($('#url').text().replace(/^.+\?/, ''))
@@ -88,7 +86,7 @@ function updateHistoryList(history) {
 function enableQueryHistory() {
     const getHistory = () => JSON.parse(localStorage.getItem('solr_executed_queries') || '[]')
     const setHistory = history => localStorage.setItem('solr_executed_queries', JSON.stringify(history))
-    const isSameQuery = (a, b) => a && b &&a['_query'] === b['_query'] && a['_host'] == b['_host']
+    const isSameQuery = (a, b) => a && b &&a['_query'] === b['_query'] && a['_host'] === b['_host']
 
     const observer = new MutationObserver(() => {
         const history = getHistory()

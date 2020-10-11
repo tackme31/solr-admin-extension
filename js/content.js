@@ -13,7 +13,7 @@
     const observer = new MutationObserver(mutations => {
         const contentNode = mutations
             .map(mutation => Array.from(mutation.addedNodes))
-            .reduce((a, b) => a.concat(b))
+            .reduce((a, b) => a.concat(b), [])
             .find(node => node.id === 'content')
         if (!contentNode) {
             return

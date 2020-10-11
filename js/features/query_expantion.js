@@ -41,21 +41,25 @@ function fillFormInputs(queryString) {
             const filters = []
             params.getAll('fq')
                 .map(value => value.split(/\sAND\s/i))
-                .reduce((a, b) => a.concat(b))
+                .reduce((a, b) => a.concat(b), [])
                 .forEach(value => filters.push(value))
-
             while (filters.length > $('[id="fq"]').length) {
                 $('#fq').parent().find('.add')[0].click()
             }
 
             $('[id="fq"]').each((i, e) => updateValue($(e), filters[i]))
+            return
         }
 
-        if (input.prop('type') === 'checkbox' && input.is(':checked') ^ (param === 'on')) {
+        if (input.prop('type') !== 'checkbox') {
+            updateValue(input, param)
+            return;
+        }
+
+        if (input.is(':checked') ^ (param === 'on' || param === 'true')) {
             input.click()
+            return
         }
-
-        updateValue(input, param)
     })
 }
 
