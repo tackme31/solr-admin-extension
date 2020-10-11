@@ -1,21 +1,4 @@
-const paramNames = [
-    // common
-    'qt', 'q', 'fq', 'sort', 'start', 'rows', 'fl', 'df', 'custom_parameters', 'wt', 'indent', 'debugQuery',
-    // dismax
-    'dismax', 'q_alt', 'qf', 'mm', 'pf', 'ps', 'tie', 'bq', 'bf',
-    // edismax
-    'edismax', 'edismax_q_alt', 'edismax_qf', 'edismax_mm', 'edismax_pf', 'edismax_ps', 'edismax_tie', 'edismax_bq', 'edismax_bf',
-    'edismax_uf', 'edismax_pf2', 'edismax_pf3', 'edismax_ps2', 'edismax_ps3', 'edismax_boost', 'edismax_stopwords', 'edismax_lowercaseOperators',
-    // hl
-    'hl', 'hl_fl', 'hl_simple_pre', 'hl_simple_post', 'hl_requireFieldMatch', 'hl_usePhraseHighlighter', 'hl_highlightMultiTerm',
-    // facet
-    'facet', 'facet_query', 'facet_field', 'facet_prefix',
-    // spatial
-    'spatial', 'pt', 'sfield', 'd',
-    // spellcheck
-    'spellcheck', 'spellcheck_build', 'spellcheck_reload', 'spellcheck_q', 'spellcheck_dictionary', 'spellcheck_count', 'spellcheck_onlyMorePopular',
-    'spellcheck_extendedResults', 'spellcheck_collate', 'spellcheck_maxCollations', 'spellcheck_maxCollationTries', 'spellcheck_accuracy',
-]
+
 
 function getFormParameters() {
     const params = {}
@@ -23,19 +6,21 @@ function getFormParameters() {
     params['_host'] = location.host
     params['_index'] = location.href.match(/#\/(?<index>.+?)\//).groups.index
     params['_datetime'] = `${new Date().toLocaleString()}`
-    paramNames.forEach(name => {
-        if (name === 'fq') {
-            params[name] = $('[id="fq"]').toArray().map(e => $(e).val())
+
+    const paramIds = Array.from($('input, textarea, select', $('#form'))).map(e => e.id)
+    paramIds.forEach(id => {
+        if (id === 'fq') {
+            params[id] = $('[id="fq"]').toArray().map(e => $(e).val())
             return
         }
 
-        const input = $('#' + name)
+        const input = $('#' + id)
         if (input.prop('type') === 'checkbox') {
-            params[name] = input.is(':checked')
+            params[id] = input.is(':checked')
             return
         }
 
-        params[name] = input.val()
+        params[id] = input.val()
     })
     return params
 }
@@ -52,8 +37,9 @@ function setFormParameters(params) {
         input[0].dispatchEvent(new Event("change"))
     }
 
-    paramNames.forEach(name => {
-        if (name === 'fq') {
+    const paramIds = Array.from($('input, textarea, select', $('#form'))).map(e => e.id)
+    paramIds.forEach(id => {
+        if (id === 'fq') {
             while (params['fq'].length > $('[id="fq"]').length) {
                 $('#fq').parent().find('.add')[0].click()
             }
@@ -62,14 +48,14 @@ function setFormParameters(params) {
             return
         }
 
-        const input = $('#' + name)
+        const input = $('#' + id)
         // checkbox toggled
-        if (input.prop('type') === 'checkbox' && input.is(':checked') ^ params[name]) {
+        if (input.prop('type') === 'checkbox' && input.is(':checked') ^ params[id]) {
             input.click()
             return
         }
 
-        updateValue(input, params[name])
+        updateValue(input, params[id])
     })
 }
 
