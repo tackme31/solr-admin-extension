@@ -9,9 +9,16 @@ function enableUIImprovement() {
                 return
             }
 
-            const url = `http://${location.hostname}?${params['_query']}`
-            const highlighted = urlhighlight({ url: url, protocol: ' ', protocolDelimiter: ' ', host: ' ', queryDelimiter: ' ' })
-            return $(`<span>[${params['_datetime']}] ${decodeURIComponent(highlighted.trim())}</span>`)
+            const searchParams = new URLSearchParams(params['_query'])
+            const highlighted = Array.from(searchParams.entries())
+                .map(entry => ({
+                    name: `<span class="url-query-param-name">${entry[0]}</span>`,
+                    value: `<span class="url-query-param-value">${entry[1]}</span>`
+                }))
+                .map(entry => `${entry.name}=${entry.value}`)
+                .join('&')
+
+            return $(`<span>[${params['_datetime']}] ${highlighted}</span>`)
         }
     })
 }
