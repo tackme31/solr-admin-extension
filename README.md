@@ -1,9 +1,10 @@
 # Solr Admin Extension
 *Solr Admin Extension* is a Chrome extension to extend the Solr admin page.  
   
-Features:  
-- [ ] UI Improvement
+Features (TODOs):  
 - [x] Query History
+- [x] Query Expantion
+- [ ] UI Improvement
 - [ ] Aliases Viewer
 
 ## Installation
