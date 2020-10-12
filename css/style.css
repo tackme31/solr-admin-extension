@@ -1,3 +1,7 @@
+#history {
+    margin-bottom: 1em;
+}
+
 .select2-results__option {
     text-align: left;
 }
@@ -15,4 +19,18 @@
 .url-query-param-value {
     color: #1ea2e8;
     font-weight: normal;
+}
+
+#query_expantion {
+    width: 21%;
+    margin-bottom: 1em;
+}
+
+#query_expantion input {
+    width: 70%;
+}
+
+#query_expantion button {
+    width: 20%;
+    padding: .1em;
 }

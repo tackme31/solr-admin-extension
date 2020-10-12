@@ -78,7 +78,8 @@ function fillFormInputs(queryString) {
 }
 
 function enableQueryExpantion() {
-    $('<div id="query_expantion">\
+    $('<label>Query Expantion</label>\
+       <div id="query_expantion">\
          <input type="text">\
          <button id="expand_query">Expand</button>\
        </div>')

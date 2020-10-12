@@ -111,5 +111,6 @@ function enableQueryHistory() {
     }
     observer.observe(url, options)
 
+    $('<label>Query History</label>').insertBefore('#form')        
     updateHistoryList(getHistory())
 }

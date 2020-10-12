@@ -2,7 +2,7 @@ function enableUIImprovement() {
     // query history list
     $('#history select').select2({
         dropdownAutoWidth: true,
-        width: 'resolve',
+        width: '21%',
         templateResult: state => {
             const params = $(state.element).data('params')
             if (!params) {
