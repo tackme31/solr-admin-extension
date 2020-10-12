@@ -14,6 +14,17 @@ function extractQueryString(queryString) {
     return queryString
 }
 
+function trimParentheses(filter) {
+    const parenDiff = text => text.split(/\(/g).length - text.split(/\)/g).length;
+
+    let diff;
+    filter = filter.replace(/\^\d+$/, '')
+    while ((diff = parenDiff(filter)) !== 0) {
+        filter = diff > 0 ? filter.trim().substr(1) : filter.trim().substr(0, filter.length - 1)
+    }
+    return filter
+}
+
 function fillFormInputs(queryString) {
     const updateValue = (input, newValue) => {
         const oldValue = input.val()
@@ -47,7 +58,7 @@ function fillFormInputs(queryString) {
                 $('#fq').parent().find('.add')[0].click()
             }
 
-            $('[id="fq"]').each((i, e) => updateValue($(e), filters[i]))
+            $('[id="fq"]').each((i, e) => updateValue($(e), trimParentheses(filters[i])))
             return
         }
 
