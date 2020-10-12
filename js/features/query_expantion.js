@@ -47,6 +47,9 @@ function fillFormInputs(queryString) {
     paramIds.forEach(id => {
         const input = $('#' + id)
         const param = params.get(input.prop('name'))
+        if (!param) {
+            return
+        }
 
         if (id === 'fq') {
             const filters = []
