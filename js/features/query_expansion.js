@@ -77,16 +77,16 @@ function fillFormInputs(queryString) {
     })
 }
 
-function enableQueryExpantion() {
-    $('<label>Query Expantion</label>\
-       <div id="query_expantion">\
+function enableQueryExpansion() {
+    $('<label>Query Expansion</label>\
+       <div id="query_expansion">\
          <input type="text">\
          <button id="expand_query">Expand</button>\
        </div>')
     .insertBefore('#form')
 
     $('#expand_query').on('click', () => {
-        const text = $('#query_expantion input').val()
+        const text = $('#query_expansion input').val()
         const queryString = extractQueryString(text)
         fillFormInputs(queryString)
     })

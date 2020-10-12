@@ -21,16 +21,16 @@
     font-weight: normal;
 }
 
-#query_expantion {
+#query_expansion {
     width: 21%;
     margin-bottom: 1em;
 }
 
-#query_expantion input {
+#query_expansion input {
     width: 70%;
 }
 
-#query_expantion button {
+#query_expansion button {
     width: 20%;
     padding: .1em;
 }

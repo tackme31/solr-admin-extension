@@ -4,7 +4,7 @@
         switch (content) {
             case 'query':
                 enableQueryHistory()
-                enableQueryExpantion()
+                enableQueryExpansion()
             default:
                 enableUIImprovement()
         }

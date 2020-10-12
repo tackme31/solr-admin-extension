@@ -3,15 +3,15 @@
 
 ## Features (TODOs):  
 - [x] Query History
-- [x] Query Expantion
+- [x] Query Expansion
 - [ ] UI Improvement
 - [ ] Aliases Viewer
 
 ### Query History
 ![query_history](img/query_history.gif)
 
-### Query Expantion
-![query_expantion](img/query_expantion.gif)
+### Query Expansion
+![query_expansion](img/query_expansion.gif)
 
 ## Installation
 This extension is not yet available in the Chrome Web Store. Clone this repository and load it as an unpackaged extension.
