@@ -43,7 +43,7 @@ function fillFormInputs(queryString) {
         $('#fq').parent().find('.rem')[0].click()
     }
 
-    const paramIds = new Set(Array.from($('#form [name]')).map(e => e.id))
+    const paramIds = new Set(Array.from($('#form [name]')).filter(e => e).map(e => e.id))
     paramIds.forEach(id => {
         const input = $('#' + id)
         const param = params.get(input.prop('name'))

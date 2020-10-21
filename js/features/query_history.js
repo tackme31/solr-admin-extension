@@ -5,7 +5,7 @@ function getFormParameters() {
     params['_index'] = location.href.match(/#\/(?<index>.+?)\//).groups.index
     params['_datetime'] = `${new Date().toLocaleString()}`
 
-    const paramIds = new Set(Array.from($('#form [name]')).map(e => e.id))
+    const paramIds = new Set(Array.from($('#form [name]')).filter(e => e).map(e => e.id))
     paramIds.forEach(id => {
         if (id === 'fq') {
             params[id] = $('[id="fq"]').toArray().map(e => $(e).val())
@@ -35,7 +35,7 @@ function setFormParameters(params) {
         input[0].dispatchEvent(new Event("change"))
     }
 
-    const paramIds = new Set(Array.from($('#form [name]')).map(e => e.id))
+    const paramIds = new Set(Array.from($('#form [name]')).filter(e => e).map(e => e.id))
     paramIds.forEach(id => {
         if (id === 'fq') {
             while (params['fq'].length > $('[id="fq"]').length) {
