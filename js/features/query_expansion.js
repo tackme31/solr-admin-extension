@@ -3,15 +3,7 @@ function extractQueryString(queryString) {
         return
     }
 
-    if (queryString.startsWith('http')) {
-        return queryString.replace(/^.+\?/, '')
-    }
-    
-    if (queryString.startsWith('?')) {
-        return queryString.replace(/^\?/, '')
-    }
-
-    return queryString
+    return queryString.replace(/^.+\?/, '')
 }
 
 function trimParentheses(filter) {
